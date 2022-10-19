@@ -24,8 +24,10 @@ public class Main {
         User user_validation = new User(email, password, phone_number);
         Validator validaton = client_validaton(user_validation);
         if (validaton.getInvalid_message() == null) {
+            
             System.out.println("The data entered is correct!");
         } else {
+
             System.out.println("Check entered data!");
             System.out.println(validaton.getInvalid_message());
         }
