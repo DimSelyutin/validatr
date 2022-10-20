@@ -23,7 +23,9 @@ public class Main {
         sc.nextLine();
 
         User user_validation = new User(email, password, phone_number);
+
         Validator validaton = client_validaton(user_validation);
+        
         if (validaton.getInvalid_message() == null) {
 
             System.out.println("The data entered is correct!");
@@ -48,7 +50,7 @@ public class Main {
 
             validator.setInvalid_message("Incorrect password");
         } else if (!validator.phone_validation()) {
-            
+
             validator.setInvalid_message("Incorrect phone number");
         }
         return validator;
