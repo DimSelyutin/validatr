@@ -1,7 +1,12 @@
 package by.social.main.validator.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import by.social.main.validator.service.Expression;
+import by.social.main.validator.service.Val;
 
 public class Validator {
 
@@ -10,23 +15,16 @@ public class Validator {
     }
 
     public void validate(RegInfo dataUser) throws ValidationException {
+        ParamProvider param = new ParamProvider();
+        HashMap<String, String> s = param.providerMap(dataUser);
+        
         List<String> uncorrectFieldsName = new ArrayList<>();
-
-        Email email = new Email(dataUser.getEmail());
-        Password pass = new Password(dataUser.getPassword());
-        PhoneNumber phone = new PhoneNumber(dataUser.getPhone_number());
-
-        if (!email.email_validation()) {
-            uncorrectFieldsName.add("email"); // неверное поле
-        }
-
-        if (!pass.password_validation()) {
-            uncorrectFieldsName.add("pass"); // неверное поле
-
-        }
-
-        if (!phone.phone_validation()) {
-            uncorrectFieldsName.add("phone"); // неверное поле
+        Val val = new Val();
+        
+        for (Map.Entry<String,String> entry : s.entrySet()) {
+            if (val.compliteValid(entry.getKey(), entry.getValue()) != null) {
+                uncorrectFieldsName.add(entry.getKey());
+            }
         }
 
         if (uncorrectFieldsName != null) {
