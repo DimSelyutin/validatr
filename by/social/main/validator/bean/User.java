@@ -1,4 +1,4 @@
-package by.social.main.validator.validation.bean;
+package by.social.main.validator.bean;
 
 import java.io.Serializable;
 
@@ -11,7 +11,6 @@ public class User implements Serializable{
     private String phone_number;
     
 
-    public User(){}
 
     public User(String email, String password, String name, String phone_number) {
         this.email = email;
@@ -20,11 +19,11 @@ public class User implements Serializable{
         this.phone_number = phone_number;
     }
 
-    public User(String email, String password, String phone_number) {
-        this.email = email;
-        this.password = password;
+    public User() {
+        this.email = "";
+        this.password = "";
         this.name = "";
-        this.phone_number = phone_number;
+        this.phone_number = "";
     }
 
     
