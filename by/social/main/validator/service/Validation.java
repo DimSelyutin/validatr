@@ -22,7 +22,7 @@ public class Validation implements ValidationBuilder {
     private RegularName regex;
     private List<String> uncorrectFieldName;
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu", Locale.US)
-    .withResolverStyle(ResolverStyle.STRICT);
+                                              .withResolverStyle(ResolverStyle.STRICT);
 
     
     public Validation() {
@@ -37,7 +37,7 @@ public class Validation implements ValidationBuilder {
 
     @Override
     public void validEmail() {
-        if (!valid(newUser.getEmail(), regex.getEMAIL_EXPRESSION())) {
+        if (!validate(newUser.getEmail(), regex.getEMAIL_EXPRESSION())) {
             uncorrectFieldName.add("Uncorrect Email");
         }
 
@@ -45,7 +45,7 @@ public class Validation implements ValidationBuilder {
 
     @Override
     public void validPhone() {
-        if (!valid(newUser.getPhoneNumber(), regex.getPHONE_EXPRESSION())) {
+        if (!validate(newUser.getPhoneNumber(), regex.getPHONE_EXPRESSION())) {
             uncorrectFieldName.add("Uncorrect Phone");
         }
 
@@ -54,7 +54,7 @@ public class Validation implements ValidationBuilder {
     
     @Override
     public void validPassword() {
-        if (!valid(newUser.getPassword(), regex.getPASSWORD_EXPRESSION())) {
+        if (!validate(newUser.getPassword(), regex.getPASSWORD_EXPRESSION())) {
             uncorrectFieldName.add("Uncorrect Password");
             
         }
@@ -76,7 +76,7 @@ public class Validation implements ValidationBuilder {
         
     }
     
-    public boolean valid(String str, String s){
+    public boolean validate(String str, String s){
         if(s != null) {
             Pattern val_pattern = Pattern.compile(s);   //enum
             Matcher match = val_pattern.matcher(str);
