@@ -1,4 +1,4 @@
-package by.controler;
+package by.social.main.validator.controler;
 
 
 public class RegularName {

@@ -1,6 +1,6 @@
-package by;
+package by.social.main.validator;
 
-import by.service.Validation;
+import by.social.main.validator.service.Validation;
 
 public class Director {
     public Director(){}

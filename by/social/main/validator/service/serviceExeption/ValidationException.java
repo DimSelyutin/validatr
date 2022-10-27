@@ -1,4 +1,4 @@
-package by.service.serviceExeption;
+package by.social.main.validator.service.serviceExeption;
 
 
 

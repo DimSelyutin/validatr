@@ -1,4 +1,4 @@
-package by.bean;
+package by.social.main.validator.bean;
 
 import java.io.Serializable;
 

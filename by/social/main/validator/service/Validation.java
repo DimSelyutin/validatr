@@ -1,13 +1,15 @@
-package by.service;
+package by.social.main.validator.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import by.bean.NewUser;
-import by.builder.ValidationBuilder;
-import by.controler.RegularName;
+import by.social.main.validator.bean.NewUser;
+import by.social.main.validator.builder.ValidationBuilder;
+import by.social.main.validator.controler.RegularName;
+
+
 
 
 public class Validation implements ValidationBuilder {

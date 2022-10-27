@@ -1,4 +1,4 @@
-package by.view;
+package by.social.main.validator.view;
 
 import java.util.List;
 
