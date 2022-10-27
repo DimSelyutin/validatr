@@ -1,11 +1,16 @@
-package by;
+package by.social.main.validator;
+
+
 
 
 import java.util.List;
 import java.util.Scanner;
 
-import by.bean.NewUser;
-import by.service.Validation;
+import by.social.main.validator.bean.NewUser;
+import by.social.main.validator.service.Validation;
+import by.social.main.validator.view.ConsoleOutPut;
+
+
 
 public class Main {
     public static void main(String[] args) {
