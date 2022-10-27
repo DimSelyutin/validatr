@@ -9,9 +9,11 @@ public class Director {
         valid.validEmail();
         valid.validPhone();
         valid.validPassword();
+        valid.validDate();
     }
 
-    public void build(String login, String email){
+    public void build (String login, String password){
         
     }
+
 }

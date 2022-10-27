@@ -1,42 +1,35 @@
 package by.social.main.validator;
 
-
-
-
 import java.util.List;
 import java.util.Scanner;
 
-import by.social.main.validator.bean.NewUser;
-import by.social.main.validator.service.Validation;
-import by.social.main.validator.view.ConsoleOutPut;
-
+import by.social.main.validator.bean.UserInfo;
+import by.social.main.validator.service.Registration;
+import by.social.main.validator.service.SignIn;
+import by.social.main.validator.view.ConsoleOutPrint;
 
 
 public class Main {
     public static void main(String[] args) {
-
+        
+        ConsoleOutPrint console = new ConsoleOutPrint();    
+        Registration reg = new Registration(inputDataOfUser());
         
         Director director = new Director();
+        reg.registerNewUser(director);
 
-        /////////
-        Validation valid = new Validation(inputDataOfUser());            //передача обьекта с данными в валидатор
+        ///////////////////////////////
 
-        director.build(valid);                                           //вызов директоры, который вызовет нужного билдера
-
-        List<String> errors = valid.getResault();                             //резултт
-        //////////
-
-        ConsoleOutPut print =new ConsoleOutPut();
-        if(errors != null){
-            print.OutPrint(errors);
-        }
-       
+        SignIn sign = new SignIn(inputDataOfUser());
         
+        
+        
+
+
 
     }
 
-
-    public static NewUser inputDataOfUser(){
+    public static UserInfo inputDataOfUser() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter email: ");
@@ -46,11 +39,14 @@ public class Main {
         String password = sc.nextLine();
 
         System.out.println("Enter phone number: ");
-        String phone_number = sc.nextLine();
+        String phoneNumber = sc.nextLine();
+
+        System.out.println("Enter your birthday: ");
+        String dataBirthday = sc.nextLine();
 
         System.out.println("For send data press Enter");
         sc.nextLine();
 
-        return new NewUser(email, password, phone_number);
+        return new UserInfo(email, password, phoneNumber, dataBirthday);
     }
 }
