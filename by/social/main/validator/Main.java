@@ -1,6 +1,5 @@
 package by.social.main.validator;
 
-import java.util.List;
 import java.util.Scanner;
 
 import by.social.main.validator.bean.UserInfo;
@@ -30,9 +29,7 @@ public class Main {
         }
         
 
-        ///////////////////////////////
-
-        // SignIn sign = new SignIn(inputDataOfUser());
+        
         
         
         
