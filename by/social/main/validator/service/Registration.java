@@ -24,8 +24,8 @@ public class Registration {
     }
 
 
-    
-    public void registerNewUser(Director director) {
+
+    public void registerNewUser() {
         
         //////////
 
