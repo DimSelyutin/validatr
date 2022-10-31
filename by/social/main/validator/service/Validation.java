@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 import by.social.main.validator.bean.UserInfo;
 import by.social.main.validator.builder.ValidationBuilder;
-import by.social.main.validator.controler.RegularName;
+import by.social.main.validator.controler.RegularNameProvider;
 
 
 
@@ -19,25 +19,25 @@ import by.social.main.validator.controler.RegularName;
 public class Validation implements ValidationBuilder {
     
     private UserInfo newUser;
-    private RegularName regex;
+    private RegularNameProvider regex;
     private List<String> uncorrectFieldName;
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu", Locale.US)
                                               .withResolverStyle(ResolverStyle.STRICT);
 
     
     public Validation() {
-        this.regex = new RegularName();
+        this.regex = new RegularNameProvider();
     }
 
     public Validation(UserInfo newUser) {
         this.newUser = newUser;
-        this.regex = new RegularName();
+        this.regex = new RegularNameProvider();
         this.uncorrectFieldName = new ArrayList<>();
     }
 
     @Override
     public void validEmail() {
-        if (!validate(newUser.getEmail(), regex.getEMAIL_EXPRESSION())) {
+        if (!validate(newUser.getEmail(), regex.getExpression("EMAIL_EXPRESSION"))) {
             uncorrectFieldName.add("Uncorrect Email");
         }
 
@@ -45,7 +45,7 @@ public class Validation implements ValidationBuilder {
 
     @Override
     public void validPhone() {
-        if (!validate(newUser.getPhoneNumber(), regex.getPHONE_EXPRESSION())) {
+        if (!validate(newUser.getPhoneNumber(), regex.getExpression("PHONE_EXPRESSION"))) {
             uncorrectFieldName.add("Uncorrect Phone");
         }
 
@@ -54,7 +54,7 @@ public class Validation implements ValidationBuilder {
     
     @Override
     public void validPassword() {
-        if (!validate(newUser.getPassword(), regex.getPASSWORD_EXPRESSION())) {
+        if (!validate(newUser.getPassword(), regex.getExpression("PASSWORD_EXPRESSION"))) {
             uncorrectFieldName.add("Uncorrect Password");
             
         }
@@ -63,12 +63,9 @@ public class Validation implements ValidationBuilder {
     }
     @Override
     public void validDate() {
-        try {
-            
-            this.dateFormatter.parse(newUser.getDateBirthday());
-        } catch (DateTimeParseException e) {
+        if(!validate(newUser.getDateBirthday())){
             uncorrectFieldName.add("Uncorrect date");
-        }        
+        }       
     }
     
     public List<String> getResault() {
@@ -83,6 +80,15 @@ public class Validation implements ValidationBuilder {
             return match.find();
         }
         return false;
+    }
+
+    public boolean validate(String str){
+        try {
+            this.dateFormatter.parse(str);
+        } catch (DateTimeParseException e) {
+            return false;
+        }   
+        return true;
     }
 
 

@@ -5,22 +5,34 @@ import java.util.Scanner;
 
 import by.social.main.validator.bean.UserInfo;
 import by.social.main.validator.service.Registration;
-import by.social.main.validator.service.SignIn;
+import by.social.main.validator.service.Validation;
 import by.social.main.validator.view.ConsoleOutPrint;
 
 
 public class Main {
     public static void main(String[] args) {
         
-        ConsoleOutPrint console = new ConsoleOutPrint();    
-        Registration reg = new Registration(inputDataOfUser());
+        ConsoleOutPrint console = new ConsoleOutPrint();
         
+        UserInfo userInfo = inputDataOfUser();
+        Validation valid = new Validation(userInfo);
+        
+
+
         Director director = new Director();
-        reg.registerNewUser(director);
+        director.build(valid);
+
+        if (!valid.getResault().isEmpty()) {
+            console.outPrint(valid.getResault());
+        } else {
+            Registration reg = new Registration(userInfo);
+            System.out.println("Account was create!");
+        }
+        
 
         ///////////////////////////////
 
-        SignIn sign = new SignIn(inputDataOfUser());
+        // SignIn sign = new SignIn(inputDataOfUser());
         
         
         

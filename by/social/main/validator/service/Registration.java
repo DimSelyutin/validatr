@@ -10,22 +10,18 @@ public class Registration {
     private UserInfo newUser;
     List<String> errors;
 
+    public List<String> getErrors() {
+        return errors;
+    }
+
     public Registration(UserInfo newUser) {
         this.newUser = newUser;
     }
 
     public void registerNewUser(Director director) {
         
-        Validation valid = new Validation(newUser);
-        director.build(valid);
-        errors = valid.getResault(); // резултт
         //////////
 
-        if (!errors.isEmpty()) {
-            ValidationException validEx = new ValidationException(null, errors);
-        } else {
-            // reg user
-        }
     }
 
     
