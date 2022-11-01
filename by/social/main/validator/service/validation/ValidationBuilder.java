@@ -1,4 +1,4 @@
-package by.social.main.validator.builder;
+package by.social.main.validator.service.validation;
 
 
 public interface ValidationBuilder {

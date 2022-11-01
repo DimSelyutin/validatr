@@ -1,4 +1,4 @@
-package by.social.main.validator;
+package by.social.main.validator.service.validation;
 
 import by.social.main.validator.service.Validation;
 

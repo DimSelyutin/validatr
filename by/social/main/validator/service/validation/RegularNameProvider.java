@@ -1,4 +1,4 @@
-package by.social.main.validator.controler;
+package by.social.main.validator.service.validation;
 
 import java.util.HashMap;
 

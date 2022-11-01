@@ -10,8 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import by.social.main.validator.bean.UserInfo;
-import by.social.main.validator.builder.ValidationBuilder;
-import by.social.main.validator.controler.RegularNameProvider;
+import by.social.main.validator.service.validation.RegularNameProvider;
+import by.social.main.validator.service.validation.ValidationBuilder;
 
 
 

@@ -5,6 +5,7 @@ import java.util.Scanner;
 import by.social.main.validator.bean.UserInfo;
 import by.social.main.validator.service.Registration;
 import by.social.main.validator.service.Validation;
+import by.social.main.validator.service.validation.Director;
 import by.social.main.validator.view.ConsoleOutPrint;
 
 
@@ -20,6 +21,8 @@ public class Main {
 
         Director director = new Director();
         director.build(valid);
+
+
 
         if (!valid.getResault().isEmpty()) {
             console.outPrint(valid.getResault());
