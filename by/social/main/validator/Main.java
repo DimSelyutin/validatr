@@ -24,11 +24,15 @@ public class Main {
 
 
 
+        String successCode = "200";
+        String unSuccessCode = "400";
+        
         if (!valid.getResault().isEmpty()) {
+            console.outPrint(unSuccessCode);
             console.outPrint(valid.getResault());
         } else {
             Registration reg = new Registration(userInfo);
-            System.out.println("Account was create!");
+            console.outPrint(successCode);
         }
         
 
