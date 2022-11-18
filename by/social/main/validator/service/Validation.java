@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import by.social.main.validator.bean.UserInfo;
-import by.social.main.validator.service.validation.RegularNameProvider;
+import by.social.main.validator.service.validation.ExpressionName;
 import by.social.main.validator.service.validation.ValidationBuilder;
 
 
@@ -19,25 +19,22 @@ import by.social.main.validator.service.validation.ValidationBuilder;
 public class Validation implements ValidationBuilder {
     
     private UserInfo newUser;
-    private RegularNameProvider regex;
     private List<String> uncorrectFieldName;
     private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu", Locale.US)
                                               .withResolverStyle(ResolverStyle.STRICT);
 
     
     public Validation() {
-        this.regex = new RegularNameProvider();
     }
 
     public Validation(UserInfo newUser) {
         this.newUser = newUser;
-        this.regex = new RegularNameProvider();
         this.uncorrectFieldName = new ArrayList<>();
     }
 
     @Override
     public void validEmail() {
-        if (!validate(newUser.getEmail(), regex.getExpression("EMAIL_EXPRESSION"))) {
+        if (!validate(newUser.getEmail(), ExpressionName.EMAIL_EXPRESSION.getRegexStr())) {
             uncorrectFieldName.add("Uncorrect Email");
         }
 
@@ -45,7 +42,7 @@ public class Validation implements ValidationBuilder {
 
     @Override
     public void validPhone() {
-        if (!validate(newUser.getPhoneNumber(), regex.getExpression("PHONE_EXPRESSION"))) {
+        if (!validate(newUser.getPhoneNumber(), ExpressionName.PHONE_EXPRESSION.getRegexStr())) {
             uncorrectFieldName.add("Uncorrect Phone");
         }
 
@@ -54,7 +51,7 @@ public class Validation implements ValidationBuilder {
     
     @Override
     public void validPassword() {
-        if (!validate(newUser.getPassword(), regex.getExpression("PASSWORD_EXPRESSION"))) {
+        if (!validate(newUser.getPassword(), ExpressionName.PASSWORD_EXPRESSION.getRegexStr())) {
             uncorrectFieldName.add("Uncorrect Password");
             
         }
