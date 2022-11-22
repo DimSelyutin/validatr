@@ -1,15 +1,15 @@
-package by.social.main.validator.view;
+package by.view;
 
 import java.util.List;
 
-public class ConsoleOutPrint {
-    public void outPrint(List<String> list){
+public class ConsoleOutPut {
+    public void OutPrint(List<String> list){
         for (String string : list) {
             System.out.println(string);
         }
     }
 
-    public void outPrint(String st){
-        System.out.println(st);
+    public void OutPrint(String str){
+        System.out.println(str);
     }
 }
