@@ -1,68 +1,60 @@
-package by.social.main.validator;
+package by;
 
+
+import java.util.List;
 import java.util.Scanner;
 
-import by.social.main.validator.bean.UserInfo;
-import by.social.main.validator.service.Registration;
-import by.social.main.validator.service.Validation;
-import by.social.main.validator.service.validation.Director;
-import by.social.main.validator.view.ConsoleOutPrint;
-
+import by.bean.NewUser;
+import by.service.Validation;
+import by.service.serviceExeption.ValidationException;
+import by.view.ConsoleOutPut;
 
 public class Main {
     public static void main(String[] args) {
-        
-        ConsoleOutPrint console = new ConsoleOutPrint();
-        
-        UserInfo userInfo = inputDataOfUser();
-        Validation valid = new Validation(userInfo);
-        
 
-
+        
         Director director = new Director();
-        director.build(valid);
+        Validation valid = null;
+        ConsoleOutPut print = new ConsoleOutPut();
+        String SUCCESS_CODE = "200";
+
+        try {
+
+            valid = new Validation(inputDataOfUser());   //передача обьекта с данными в валидатор
+            director.build(valid);                       //вызов директоры, который вызовет нужного билдера
+            valid.getResault();                             //резултт
+            print.OutPrint(SUCCESS_CODE);
+        }  catch (ValidationException e) {
+
+            print.OutPrint(e.getUncorrectFieldsName());
+            e.printStackTrace();
+
+        }                                           
+
+      
 
 
-
-        String successCode = "200";
-        String unSuccessCode = "400";
+       
         
-        if (!valid.getResault().isEmpty()) {
-            console.outPrint(unSuccessCode);
-            console.outPrint(valid.getResault());
-        } else {
-            Registration reg = new Registration(userInfo);
-            console.outPrint(successCode);
-        }
-        
-
-        
-        
-        
-        
-
-
 
     }
 
-    public static UserInfo inputDataOfUser() {
-        Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter email: ");
-        String email = sc.nextLine();
+    public static NewUser inputDataOfUser(){
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("Enter email: ");
+            String email = sc.nextLine();
 
-        System.out.println("Enter password: ");
-        String password = sc.nextLine();
+            System.out.println("Enter password: ");
+            String password = sc.nextLine();
 
-        System.out.println("Enter phone number: ");
-        String phoneNumber = sc.nextLine();
+            System.out.println("Enter phone number: ");
+            String phone_number = sc.nextLine();
 
-        System.out.println("Enter your birthday: ");
-        String dataBirthday = sc.nextLine();
+            System.out.println("For send data press Enter");
+            sc.nextLine();
 
-        System.out.println("For send data press Enter");
-        sc.nextLine();
-
-        return new UserInfo(email, password, phoneNumber, dataBirthday);
+            return new NewUser(email, password, phone_number);
+        }
     }
 }
